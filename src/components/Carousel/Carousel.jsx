@@ -1,27 +1,29 @@
 import React from "react";
 
-// 1. Correct Image Imports
-import Ajio from "../../assets/Ajio.png";
+// 1. Updated Image Imports
 import Amazon from "../../assets/amazon.jpg";
-import Flipkart from "../../assets/flipkart.jpg";
 import Nykaa from "../../assets/nykaa.png";
-import Nike from "../../assets/nike.jpg";
+import Snapdeal from "../../assets/snapdeal.png";       // Path: src/assets/snapdeal.png
+import Myntra from "../../assets/myntra.jpg";           // Path: src/assets/myntra.png
+import JioMart from "../../assets/jiomart.png";         // Path: src/assets/jiomart.png
+import Reliance from "../../assets/reliance.png";       // Path: src/assets/reliance.png
 
 const brandImages = [
-  { name: "Ajio", src: Ajio, url: "https://www.ajio.com" },
   { name: "Amazon", src: Amazon, url: "https://www.amazon.in" },
-  { name: "Flipkart", src: Flipkart, url: "https://www.flipkart.com" },
+  { name: "Snapdeal", src: Snapdeal, url: "https://www.snapdeal.com" },
+  { name: "Myntra", src: Myntra, url: "https://www.myntra.com" },
+  { name: "JioMart", src: JioMart, url: "https://www.jiomart.com" },
+  { name: "Reliance Digital", src: Reliance, url: "https://www.reliancedigital.in" },
   { name: "Nykaa", src: Nykaa, url: "https://www.nykaa.com" },
-  { name: "Nike", src: Nike, url: "https://www.nike.com" },
 ];
 
 export const InfiniteCarousel = () => {
-  const duplicatedLogos = [...brandImages, ...brandImages, ...brandImages, ...brandImages];
+  // Triple the logos to ensure a seamless loop on larger screens
+  const duplicatedLogos = [...brandImages, ...brandImages, ...brandImages];
 
   return (
     <section className="w-full py-20 bg-white/50 backdrop-blur-md overflow-hidden border-y border-slate-100 relative">
       
-      {/* 💥 WE INJECT THE CSS KEYFRAMES DIRECTLY HERE 💥 */}
       <style>
         {`
           @keyframes infiniteScroll {
@@ -31,7 +33,7 @@ export const InfiniteCarousel = () => {
           .custom-marquee {
             display: flex;
             width: max-content;
-            animation: infiniteScroll 30s linear infinite;
+            animation: infiniteScroll 40s linear infinite;
           }
           .custom-marquee:hover {
             animation-play-state: paused;
@@ -50,7 +52,6 @@ export const InfiniteCarousel = () => {
         <div className="absolute left-0 top-0 bottom-0 w-32 sm:w-48 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
         <div className="absolute right-0 top-0 bottom-0 w-32 sm:w-48 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
 
-        {/* We apply the custom class we defined in the <style> tag above */}
         <div className="custom-marquee flex-nowrap shrink-0 gap-16 py-4 items-center">
           {duplicatedLogos.map((brand, i) => (
             <a
