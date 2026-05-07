@@ -4,13 +4,11 @@ import React from "react";
 import Amazon from "../../assets/amazon.jpg";
 import Nykaa from "../../assets/nykaa.png";
 import Snapdeal from "../../assets/snapdeal.png";       // Path: src/assets/snapdeal.png
-import JioMart from "../../assets/jiomart.png";         // Path: src/assets/jiomart.png
 import Reliance from "../../assets/reliance.png";       // Path: src/assets/reliance.png
 
 const brandImages = [
   { name: "Amazon", src: Amazon, url: "https://www.amazon.in" },
   { name: "Snapdeal", src: Snapdeal, url: "https://www.snapdeal.com" },
-  { name: "JioMart", src: JioMart, url: "https://www.jiomart.com" },
   { name: "Reliance Digital", src: Reliance, url: "https://www.reliancedigital.in" },
   { name: "Nykaa", src: Nykaa, url: "https://www.nykaa.com" },
 ];
