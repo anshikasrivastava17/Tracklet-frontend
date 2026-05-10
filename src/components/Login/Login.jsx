@@ -105,7 +105,7 @@ function Login() {
             <div>
               <label className="block text-xs font-bold text-[#0A0A0A] mb-2 uppercase tracking-[0.1em]">Email</label>
               <input type="email" required value={email} onChange={e => setEmail(e.target.value)}
-                placeholder="you@example.com" className={inputCls} />
+                placeholder="you@example.com" className={inputCls} autoComplete="off" />
             </div>
             <div>
               <div className="flex items-center justify-between mb-2">
@@ -115,7 +115,7 @@ function Login() {
                 </Link>
               </div>
               <input type="password" required value={password} onChange={e => setPassword(e.target.value)}
-                placeholder="••••••••" className={inputCls} />
+                placeholder="••••••••" className={inputCls} autoComplete="new-password" />
             </div>
 
             <button
