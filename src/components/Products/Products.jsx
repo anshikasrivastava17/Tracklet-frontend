@@ -30,7 +30,12 @@ const ProductHistoryPage = () => {
       const email = localStorage.getItem("userEmail");
       if (!email) { setLoading(false); return; }
       try {
-        const response = await fetch(api(`/products/user-products?email=${email}`));
+        const token = localStorage.getItem("token");
+        const response = await fetch(api(`/products/user-products?email=${email}`), {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
         const data = await response.json();
         if (response.ok) setProductHistory(data);
       } catch (error) {
