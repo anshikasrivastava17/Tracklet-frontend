@@ -159,7 +159,7 @@ const ForgotPassword = () => {
               <div>
                 <label className="block text-xs font-bold text-[#0A0A0A] mb-2 uppercase tracking-[0.1em]">Email Address</label>
                 <input type="email" required value={email} onChange={e => setEmail(e.target.value)}
-                  disabled={loading} placeholder="you@example.com" className={inputCls} />
+                  disabled={loading} placeholder="you@example.com" className={inputCls} autoComplete="off" />
               </div>
               <button type="submit" disabled={loading}
                 className="w-full py-4 text-base font-bold text-white rounded-xl transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-50"
@@ -177,13 +177,13 @@ const ForgotPassword = () => {
               <div>
                 <label className="block text-xs font-bold text-[#0A0A0A] mb-2 uppercase tracking-[0.1em]">Reset Code (OTP)</label>
                 <input type="text" required value={otp} onChange={e => setOtp(e.target.value)}
-                  disabled={loading} placeholder="123456" maxLength={6}
+                  disabled={loading} placeholder="123456" maxLength={6} autoComplete="one-time-code"
                   className={`${inputCls} text-center text-xl tracking-[0.4em] font-mono`} />
               </div>
               <div>
                 <label className="block text-xs font-bold text-[#0A0A0A] mb-2 uppercase tracking-[0.1em]">New Password</label>
                 <input type="password" required value={newPassword} onChange={e => setNewPassword(e.target.value)}
-                  disabled={loading} placeholder="••••••••" className={inputCls} />
+                  disabled={loading} placeholder="••••••••" className={inputCls} autoComplete="new-password" />
               </div>
               <button type="submit" disabled={loading}
                 className="w-full py-4 text-base font-bold text-white rounded-xl transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-50"
