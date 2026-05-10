@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "/src/components/Navbar/Navbar";
 import { Link } from "react-router-dom";
+import { api } from "/src/api";
 
 const DOMAIN_COLORS = {
   amazon:  { bg: "#FF9900", text: "#FFFFFF" },
@@ -29,7 +30,7 @@ const ProductHistoryPage = () => {
       const email = localStorage.getItem("userEmail");
       if (!email) { setLoading(false); return; }
       try {
-        const response = await fetch(`https://tc4d4uk8sf.execute-api.ap-south-1.amazonaws.com/dev/products/user-products?email=${email}`);
+        const response = await fetch(api(`/products/user-products?email=${email}`));
         const data = await response.json();
         if (response.ok) setProductHistory(data);
       } catch (error) {

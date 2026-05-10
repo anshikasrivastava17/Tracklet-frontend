@@ -26,6 +26,25 @@ export default defineConfig({
     fs: {
       strict: false,
     },
+    // Proxy API calls to local backend during development
+    proxy: {
+      '/auth': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+      '/products': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+      '/monitor': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+      '/test-monitor': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
     warmup: {
       clientFiles: [
         './src/App.jsx',
