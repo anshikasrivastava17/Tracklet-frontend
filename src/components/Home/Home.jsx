@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "/src/components/Navbar/Navbar";
+import { api } from "/src/api";
 
 const SG = { fontFamily: "'Space Grotesk', sans-serif" };
 
@@ -25,7 +26,7 @@ const Home = () => {
     }
     try {
       // UPDATED TO LIVE AWS URL
-      const response = await fetch("https://tc4d4uk8sf.execute-api.ap-south-1.amazonaws.com/dev/products/track", {
+      const response = await fetch(api("/products/track"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: userEmail, productURL: productLink, threshold: priceThreshold, timeout: timeoutPeriod }),

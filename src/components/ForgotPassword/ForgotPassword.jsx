@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { api } from "/src/api";
 
 const SG = { fontFamily: "'Space Grotesk', sans-serif" };
 const inputCls = "w-full px-4 py-3.5 rounded-xl bg-[#F7F7F7] border border-[#0A0A0A]/10 text-[15px] text-[#0A0A0A] placeholder:text-[#BBB] font-semibold focus:outline-none focus:border-[#FF6200] focus:ring-2 focus:ring-[#FF6200]/15 transition-all";
@@ -21,7 +22,7 @@ const ForgotPassword = () => {
     setError(null); setLoading(true);
     try {
       // UPDATED TO LIVE AWS URL
-      const response = await fetch("https://tc4d4uk8sf.execute-api.ap-south-1.amazonaws.com/dev/auth/forgot-password", {
+      const response = await fetch(api("/auth/forgot-password"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -43,7 +44,7 @@ const ForgotPassword = () => {
     setError(null); setLoading(true);
     try {
       // UPDATED TO LIVE AWS URL
-      const response = await fetch("https://tc4d4uk8sf.execute-api.ap-south-1.amazonaws.com/dev/auth/reset-password", {
+      const response = await fetch(api("/auth/reset-password"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp, newPassword }),

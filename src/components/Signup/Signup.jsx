@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { api } from "/src/api";
 
 const SG = { fontFamily: "'Space Grotesk', sans-serif" };
 const inputCls = (hasErr) =>
@@ -49,7 +50,7 @@ const Signup = () => {
     if (!validateForm()) return;
     setLoading(true); setError(""); setMessage("");
     try {
-      const response = await fetch("https://tc4d4uk8sf.execute-api.ap-south-1.amazonaws.com/dev/auth/register", {
+      const response = await fetch(api("/auth/signup"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: formData.name, email: formData.email, password: formData.password }),
