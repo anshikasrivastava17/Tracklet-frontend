@@ -54,10 +54,38 @@ const ProductHistoryPage = () => {
     } catch { return "Product"; }
   };
 
+  const [deletingId, setDeletingId] = useState(null);
+  const [deleteError, setDeleteError] = useState(null);
+
   const handleDelete = async (id) => {
-    setProductHistory(productHistory.filter((p) => p.Product_ID !== id));
-    if (expandedProduct === id) setExpandedProduct(null);
+    setDeletingId(id);
+    setDeleteError(null);
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(api("/products/remove-user"), {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ productID: id }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "Failed to remove tracker.");
+      }
+
+      // Remove from local state only after confirmed server-side deletion
+      setProductHistory((prev) => prev.filter((p) => p.Product_ID !== id));
+      if (expandedProduct === id) setExpandedProduct(null);
+    } catch (err) {
+      setDeleteError(err.message);
+    } finally {
+      setDeletingId(null);
+    }
   };
+
 
   const filtered = productHistory.filter(p => {
     if (filter === "monitoring") return !p.NotificationSent;
@@ -158,6 +186,18 @@ const ProductHistoryPage = () => {
 
       {/* ── Content ── */}
       <div className="max-w-5xl mx-auto px-6 py-10 pb-24">
+
+        {/* Delete error banner */}
+        {deleteError && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
+            className="mb-6 p-4 rounded-xl flex items-center justify-between text-sm font-bold"
+            style={{ background: "#FEF2F2", border: "1px solid #FECACA", color: "#EF4444" }}
+          >
+            <span>{deleteError}</span>
+            <button onClick={() => setDeleteError(null)} className="text-lg leading-none opacity-60 hover:opacity-100 ml-3">×</button>
+          </motion.div>
+        )}
 
         {/* Filter tabs */}
         {productHistory.length > 0 && (
@@ -315,12 +355,17 @@ const ProductHistoryPage = () => {
                             </button>
                             <button
                               onClick={() => handleDelete(product.Product_ID)}
-                              className="p-2 rounded-lg text-[#bbb] hover:text-red-500 hover:bg-red-50 transition-all"
+                              disabled={deletingId === product.Product_ID}
+                              className="p-2 rounded-lg text-[#bbb] hover:text-red-500 hover:bg-red-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                               title="Remove tracker"
                             >
-                              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                              </svg>
+                              {deletingId === product.Product_ID ? (
+                                <span className="w-5 h-5 border-2 border-red-300 border-t-red-500 rounded-full animate-spin block" />
+                              ) : (
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                              )}
                             </button>
                           </div>
                         </div>

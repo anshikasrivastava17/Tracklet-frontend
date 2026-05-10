@@ -35,6 +35,7 @@ describe('PrivateRoute Component', () => {
   it('should render children when user IS authenticated', () => {
     // Simulate logged-in state
     localStorage.setItem('userEmail', 'test@test.com');
+    localStorage.setItem('token', 'fake-jwt-token');
 
     render(
       <MemoryRouter initialEntries={['/protected']}>

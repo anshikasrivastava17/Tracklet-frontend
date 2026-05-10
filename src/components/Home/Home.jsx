@@ -110,7 +110,7 @@ const Home = () => {
               <label className="block text-xs font-bold text-[#0A0A0A] mb-2 uppercase tracking-[0.12em]">Product URL</label>
               <input type="url" required value={productLink} onChange={e => setProductLink(e.target.value)}
                 placeholder="https://www.amazon.in/dp/..." className={inputClass} />
-              <p className="text-xs text-[#aaa] mt-2 font-medium">Supports Amazon, Flipkart, Ajio, Nike, Nykaa, and more.</p>
+              <p className="text-xs text-[#aaa] mt-2 font-medium">Supports Amazon, Nykaa, Snapdeal, and Reliance Digital.</p>
             </div>
 
             {/* Price + Duration row */}
