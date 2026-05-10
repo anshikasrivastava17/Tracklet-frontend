@@ -11,11 +11,11 @@ const inputCls = (hasErr) =>
       : "border-[#0A0A0A]/10 focus:border-[#FF6200] focus:ring-2 focus:ring-[#FF6200]/15"
   }`;
 
-const Field = ({ id, label, type = "text", placeholder, error: err, value, onChange }) => (
+const Field = ({ id, label, type = "text", placeholder, error: err, value, onChange, autoComplete = "off" }) => (
   <div>
     <label className="block text-xs font-bold text-[#0A0A0A] mb-2 uppercase tracking-[0.1em]">{label}</label>
     <input id={id} name={id} type={type} required value={value} onChange={onChange}
-      placeholder={placeholder} className={inputCls(!!err)} />
+      placeholder={placeholder} className={inputCls(!!err)} autoComplete={autoComplete} />
     {err && <p className="text-xs text-red-500 font-bold mt-1.5">{err}</p>}
   </div>
 );
@@ -153,8 +153,8 @@ const Signup = () => {
           <form className="space-y-4" onSubmit={handleSubmit}>
             <Field id="name" label="Full Name" placeholder="John Doe" error={validationErrors.name} value={formData.name} onChange={handleChange} />
             <Field id="email" label="Email" type="email" placeholder="you@example.com" error={validationErrors.email} value={formData.email} onChange={handleChange} />
-            <Field id="password" label="Password" type="password" placeholder="••••••••" error={validationErrors.password} value={formData.password} onChange={handleChange} />
-            <Field id="confirmPassword" label="Confirm Password" type="password" placeholder="••••••••" error={validationErrors.confirmPassword} value={formData.confirmPassword} onChange={handleChange} />
+            <Field id="password" label="Password" type="password" placeholder="••••••••" error={validationErrors.password} value={formData.password} onChange={handleChange} autoComplete="new-password" />
+            <Field id="confirmPassword" label="Confirm Password" type="password" placeholder="••••••••" error={validationErrors.confirmPassword} value={formData.confirmPassword} onChange={handleChange} autoComplete="new-password" />
 
             <button
               type="submit"
