@@ -13,6 +13,7 @@ const ProductHistoryPage = lazy(() => import("./components/Products/Products"));
 const AboutUs      = lazy(() => import("./components/About/About"));
 const Contact      = lazy(() => import("./components/Contact/Contact"));
 const Subscription = lazy(() => import("./components/Subscription/Subscription"));
+const Checkout     = lazy(() => import("./components/Checkout/Checkout"));
 const PrivateRoute = lazy(() => import("./components/PrivateRoute/PrivateRoute"));
 
 // Google-style 4-dot bounce loader for Suspense
@@ -68,6 +69,11 @@ function AnimatedRoutes() {
         <Route path="/subscription" element={
           <PageTransition>
             <PrivateRoute><Subscription /></PrivateRoute>
+          </PageTransition>
+        } />
+        <Route path="/checkout" element={
+          <PageTransition>
+            <PrivateRoute><Checkout /></PrivateRoute>
           </PageTransition>
         } />
       </Routes>
