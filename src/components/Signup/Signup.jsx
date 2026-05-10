@@ -66,11 +66,11 @@ const Signup = () => {
     }
   };
 
-  const Field = ({ id, label, type = "text", placeholder, error: err }) => (
+  const Field = ({ id, label, type = "text", placeholder, error: err, autoComplete = "off" }) => (
     <div>
       <label className="block text-xs font-bold text-[#0A0A0A] mb-2 uppercase tracking-[0.1em]">{label}</label>
       <input id={id} name={id} type={type} required value={formData[id]} onChange={handleChange}
-        placeholder={placeholder} className={inputCls(!!err)} />
+        placeholder={placeholder} className={inputCls(!!err)} autoComplete={autoComplete} />
       {err && <p className="text-xs text-red-500 font-bold mt-1.5">{err}</p>}
     </div>
   );
@@ -152,8 +152,8 @@ const Signup = () => {
           <form className="space-y-4" onSubmit={handleSubmit}>
             <Field id="name" label="Full Name" placeholder="John Doe" error={validationErrors.name} />
             <Field id="email" label="Email" type="email" placeholder="you@example.com" error={validationErrors.email} />
-            <Field id="password" label="Password" type="password" placeholder="••••••••" error={validationErrors.password} />
-            <Field id="confirmPassword" label="Confirm Password" type="password" placeholder="••••••••" error={validationErrors.confirmPassword} />
+            <Field id="password" label="Password" type="password" placeholder="••••••••" error={validationErrors.password} autoComplete="new-password" />
+            <Field id="confirmPassword" label="Confirm Password" type="password" placeholder="••••••••" error={validationErrors.confirmPassword} autoComplete="new-password" />
 
             <button
               type="submit"
