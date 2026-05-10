@@ -25,10 +25,14 @@ const Home = () => {
       return;
     }
     try {
+      const token = localStorage.getItem("token");
       // UPDATED TO LIVE AWS URL
       const response = await fetch(api("/products/track"), {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}` 
+        },
         body: JSON.stringify({ email: userEmail, productURL: productLink, threshold: priceThreshold, timeout: timeoutPeriod }),
       });
       const data = await response.json();
