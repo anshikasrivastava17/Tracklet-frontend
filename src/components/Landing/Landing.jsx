@@ -17,7 +17,7 @@ const Landing = () => {
       number: "01",
       title: "Paste a link",
       icon: "🔗",
-      desc: "Drop any product URL from Amazon, Flipkart, or other supported stores.",
+      desc: "Drop any product URL from Amazon, Nykaa, Snapdeal, or Reliance Digital.",
     },
     {
       number: "02",
@@ -259,7 +259,7 @@ const Landing = () => {
             >
               {[
                 { icon: "🔔", title: "Instant Alerts", desc: "Email notifications the moment prices drop below your target." },
-                { icon: "🏪", title: "Multi-store Support", desc: "Amazon, Flipkart, Ajio, Nike, Nykaa and more." },
+                { icon: "🏪", title: "Multi-store Support", desc: "Amazon, Nykaa, Snapdeal, and Reliance Digital — with more coming soon." },
                 { icon: "🔒", title: "Privacy First", desc: "We never store your browsing data or personal preferences." },
                 { icon: "⚡", title: "24/7 Monitoring", desc: "Our bots run round the clock, even when you're asleep." },
               ].map((f, i) => (
